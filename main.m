@@ -1,6 +1,7 @@
 boat.A=zeros(1,2000,'double');%函数的A
 boat.B=zeros(1,2000,'double');%函数的B
 boat.H=zeros(1,2000,'double');%函数Z=H
+
 boat.Boat_quality=zeros(1,2000,'double');%船体质量
 boat.waterline=zeros(1,2000,'double');%平 吃水线
 boat.Boat_com=zeros(1,2000,'double');%船体重心
@@ -8,8 +9,10 @@ boat.Recovery_torque=zeros(1,2000,'double');%复原力矩
 boat.Resistance_section=zeros(1,2000,'double');%水下阻力截面面积
 boat.Boat_Length=zeros(1,2000,'double');%船长
 boat.Boat_Width=zeros(1,2000,'double');%船宽
+
 count=1;
 Density=1.6;%密度
+
 for H=0.11:0.01:0.13%将高度从x到y，间隔为z进行遍历
     disp(['working on :h ',num2str(H)]);%显示字符串和高度
     for A=16:0.1:24%将A从x到y，间隔为z进行遍历
@@ -36,9 +39,8 @@ for H=0.11:0.01:0.13%将高度从x到y，间隔为z进行遍历
             if(Y_MAX/X_MAX)>2.5%长宽比太大的情况删去
                 continue;
             end%船体质量
+            
             %数据初步筛选结束------------------------------
-
-
             M=Boat_Quality(A,B,H,Density);%船体重心%函数调用跳转1
             center_gravity=Boat_COM(A,B,H,Density);%函数跳转4
             if center_gravity>(H*0.88)%重心太高的情况删
